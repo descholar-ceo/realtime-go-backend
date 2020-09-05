@@ -1,5 +1,9 @@
 package main
 
+import (
+	"encoding/json"
+)
+
 /*Message is a struct*/
 type Message struct {
 	Name string
@@ -11,4 +15,5 @@ func main() {
 		`"data":{"name":"Hardware support"}`)
 
 	var recMsg Message
+	json.Unmarshal(recRawMsg, &recMsg)
 }
