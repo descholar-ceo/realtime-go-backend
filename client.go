@@ -17,7 +17,8 @@ type Client struct {
 	send chan Message
 }
 
-func (client *Client) write() {
+/*Write method*/
+func (client *Client) Write() {
 	for msg := range client.send {
 		// TODO: call socket.sendJSON(msg)
 		fmt.Printf("%#v\n", msg)
