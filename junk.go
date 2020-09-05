@@ -34,6 +34,7 @@ func main() {
 		var sendMsg Message
 		sendMsg.Name = "channel add"
 		sendMsg.Data = channel
+		sendRawMsg, err := json.Marshal(sendMsg)
 	}
 }
 
