@@ -1,0 +1,11 @@
+package main
+
+type Message struct{
+	Name string,
+	Data interface{}
+}
+
+func main() {
+	recRawMsg := []byte(`{"name":"channel add",` +
+		`"data":{"name":"Hardware support"}`)
+}
