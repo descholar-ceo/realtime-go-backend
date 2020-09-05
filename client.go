@@ -26,6 +26,9 @@ func (client *Client) Write() {
 	client.socket.Close()
 }
 
+/*Read method is to read the inMessage*/
+fucn (client *Client) Read(){}
+
 /*NewClient is the instation of the Client object*/
 func NewClient(socket *websocket.Conn) *Client {
 	return &Client{
