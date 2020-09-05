@@ -53,9 +53,9 @@ func NewClient() *Client {
 	}
 }
 
-func main() {
-	client := NewClient()
-	go client.subscribeChannels()
-	go client.subscribeMessages()
-	client.write()
-}
+// func main() {
+// 	client := NewClient()
+// 	go client.subscribeChannels()
+// 	go client.subscribeMessages()
+// 	client.write()
+// }

@@ -42,6 +42,6 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	client := NewClient()
-	client.Write()
+	go client.Write()
 	client.Read()
 }
