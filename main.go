@@ -38,10 +38,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	for {
-		msgType, msg, err := socket.ReadMessage()
-		if err != nil {
+		// msgType, msg, err := socket.ReadMessage()
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		var inMsg Message
+		if err := socket.ReadJSON(&inMsg); err != nil {
 			fmt.Println(err)
-			return
+			break
 		}
 		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		if err = socket.WriteMessage(msgType, msg); err != nil {
