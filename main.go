@@ -21,50 +21,9 @@ type Channel struct {
 	Name string `json:"name"`
 }
 
-
 func main() {
-	http.HandleFunc("/", handler)
+	// http.HandleFunc("/", handler)
 	http.ListenAndServe(":8081", nil)
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	// fmt.Fprintf(w, "Hello there, I am coming from the go server")
-	
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	for {
-		// msgType, msg, err := socket.ReadMessage()
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
-		var inMsg, outMsg Message
-		if err := socket.ReadJSON(&inMsg); err != nil {
-			fmt.Println(err)
-			break
-		}
-		fmt.Printf("%#v\n", inMsg)
-		switch inMsg.Name {
-		case "channel add":
-			err := addChannel(inMsg.Data)
-			if err != nil {
-				outMsg = Message{"error", err}
-				if err := socket.WriteJSON(outMsg); err != nil {
-					fmt.Println(err)
-					break
-				}
-			}
-		case "channel subscribe":
-			go subscribeChannel(socket)
-		}
-		// fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
-		// if err = socket.WriteMessage(msgType, msg); err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
-	}
 }
 
 func addChannel(data interface{}) error {
