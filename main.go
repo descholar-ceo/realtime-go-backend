@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/websocket"
@@ -19,5 +18,6 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello there, I am coming from the go server")
+	// fmt.Fprintf(w, "Hello there, I am coming from the go server")
+	upgrader.Upgrade(w, r, nil)
 }
