@@ -15,7 +15,9 @@ var upgrader = websocket.Upgrader{
 }
 
 /*Router is a struct*/
-type Router struct{}
+type Router struct{
+	rules map[string]Handler
+}
 
 func (r *Router) Handle(msgName string, Handler){}
 
