@@ -9,4 +9,6 @@ type Message struct {
 func main() {
 	recRawMsg := []byte(`{"name":"channel add",` +
 		`"data":{"name":"Hardware support"}`)
+
+	var recMsg Message
 }
