@@ -7,6 +7,18 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+/*Message is a struct*/
+type Message struct {
+	Name string      `json:"name"`
+	Data interface{} `json:"data"`
+}
+
+/*Channel is a struct type*/
+type Channel struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
