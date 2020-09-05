@@ -6,6 +6,8 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+type Handler func(*Client,interface{})
+
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -14,6 +16,8 @@ var upgrader = websocket.Upgrader{
 
 /*Router is a struct*/
 type Router struct{}
+
+func (r *Router) Handle(msgName string, Handler){}
 
 func (e *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	socket, err := upgrader.Upgrade(w, r, nil)
