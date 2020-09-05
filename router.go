@@ -33,6 +33,12 @@ func (r *Router) Handle(msgName string, handler Handler) {
 	r.rules[msgName] = handler
 }
 
+/*FindHandler is a methd to help find the proper handler*/
+func (r *Router) FindHandler(msgName string) (Handler, bool) {
+	handler, found := r.rules[msgName]
+	return handler, found
+}
+
 /*ServeHTTP func*/
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	socket, err := upgrader.Upgrade(w, req, nil)

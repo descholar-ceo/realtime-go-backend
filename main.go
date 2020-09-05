@@ -5,10 +5,10 @@ import (
 )
 
 /*Message is a struct*/
-type Message struct {
-	Name string      `json:"name"`
-	Data interface{} `json:"data"`
-}
+// type Message struct {
+// 	Name string      `json:"name"`
+// 	Data interface{} `json:"data"`
+// }
 
 /*Channel is a struct type*/
 type Channel struct {
