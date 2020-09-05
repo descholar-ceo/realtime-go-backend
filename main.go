@@ -80,7 +80,7 @@ func addChannel(data interface{}) error {
 	}
 	channel.ID = "1"
 
-	fmt.Printf("the channel is : %#v\n", channel)
+	// fmt.Printf("the channel is : %#v\n", channel)
 	fmt.Println("Added new channel")
 	return nil
 }
