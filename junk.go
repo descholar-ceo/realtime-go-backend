@@ -11,6 +11,12 @@ type Message struct {
 	Data interface{}
 }
 
+/*Channel is a struct type*/
+type Channel struct {
+	ID   string
+	Name string
+}
+
 func main() {
 	recRawMsg := []byte(`{"name":"channel add", "data":{"name":"Hardware support"}}`)
 
@@ -21,4 +27,11 @@ func main() {
 		return
 	}
 	fmt.Printf("%v\n", recMsg)
+	if recMsg.Name == "channel add" {
+		addChannel(recMsg.Data)
+	}
+}
+
+func addChannel(data interface{}) (Channel, error) {
+
 }
