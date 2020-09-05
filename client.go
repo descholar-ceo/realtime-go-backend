@@ -12,7 +12,9 @@ type Client struct {
 }
 
 func (client *Client) write() {
-
+	for msg := range client.send {
+		// TODO: call socket.sendJSON(msg)
+	}
 }
 
 func main() {}
