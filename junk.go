@@ -19,7 +19,7 @@ import (
 // 	Name string `json:"name"`
 // }
 
-func main() {
+func junk() {
 	recRawMsg := []byte(`{"name":"channel add", "data":{"name":"Hardware support"}}`)
 
 	var recMsg Message
