@@ -60,6 +60,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					break
 				}
 			}
+		case "channel subscribe":
+
 		}
 		// fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		// if err = socket.WriteMessage(msgType, msg); err != nil {
