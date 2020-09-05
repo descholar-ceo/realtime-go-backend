@@ -44,7 +44,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		// 	fmt.Println(err)
 		// 	return
 		// }
-		var inMsg Message
+		var inMsg, outMsg Message
 		if err := socket.ReadJSON(&inMsg); err != nil {
 			fmt.Println(err)
 			break
@@ -52,7 +52,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%#v\n", inMsg)
 		switch inMsg.Name {
 		case "channel add":
-			addChannel(inMsg.Data)
+			err := addChannel(inMsg.Data)
+			if err != nil {
+				outMsg = Message{"error", err}
+				if err := socket.WriteJSON(outMsg); err != nil {
+					fmt.Println(err)
+					break
+				}
+			}
 		}
 		// fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		// if err = socket.WriteMessage(msgType, msg); err != nil {
