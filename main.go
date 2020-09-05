@@ -26,10 +26,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	for {
-		messageType, msg, err := socket.ReadMessage()
+		msgType, msg, err := socket.ReadMessage()
 		if err != nil {
 			fmt.Println(err)
 			break
 		}
+		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", msgType, msg)
 	}
 }
