@@ -61,7 +61,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		case "channel subscribe":
-
+			subscribeChannel()
 		}
 		// fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		// if err = socket.WriteMessage(msgType, msg); err != nil {
@@ -81,4 +81,8 @@ func addChannel(data interface{}) error {
 
 	fmt.Printf("the channel is : %#v\n", channel)
 	return nil
+}
+
+func subscribeChannel() {
+	// TODO: rethink Query / changefeed
 }
