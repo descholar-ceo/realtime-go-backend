@@ -11,4 +11,8 @@ type Client struct {
 	send chan Message
 }
 
+func (client *Client) write() {
+
+}
+
 func main() {}
