@@ -32,5 +32,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
+		socket.WriteMessage(msgType, msg)
 	}
 }
