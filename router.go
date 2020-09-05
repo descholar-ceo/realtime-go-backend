@@ -16,5 +16,5 @@ var upgrader = websocket.Upgrader{
 type Router struct{}
 
 func (e *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
+	socket, err := upgrader.Upgrade(w, r, nil)
 }
