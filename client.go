@@ -29,10 +29,3 @@ func NewClient() *Client {
 		send: make(chan Message),
 	}
 }
-
-// func main() {
-// 	client := NewClient()
-// 	go client.subscribeChannels()
-// 	go client.subscribeMessages()
-// 	client.write()
-// }
