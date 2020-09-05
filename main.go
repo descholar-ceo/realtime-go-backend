@@ -11,4 +11,5 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello there, I am coming from the go server")
+	http.ListenAndServe(":8081", nil)
 }
