@@ -23,7 +23,11 @@ func (client *Client) Write() {
 	for msg := range client.send {
 		// TODO: call socket.sendJSON(msg)
 		fmt.Printf("%#v\n", msg)
+		if err := client.socket.WriteJSON(msg); err != nil {
+			break
+		}
 	}
+	client.socket.Close()
 }
 
 /*NewClient is the instation of the Client object*/
