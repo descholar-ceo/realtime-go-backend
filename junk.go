@@ -26,12 +26,18 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("%v\n", recMsg)
+	fmt.Printf("%#v\n", recMsg)
 	if recMsg.Name == "channel add" {
 		addChannel(recMsg.Data)
 	}
 }
 
 func addChannel(data interface{}) (Channel, error) {
+	var channel Channel
+	channelMap := data.(map[string]interface{})
+	channel.Name = channelMap["name"].(string)
+	channel.ID = "1"
 
+	fmt.Printf("the channel is : %#v\n", channel)
+	return channel, nil
 }
