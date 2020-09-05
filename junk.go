@@ -35,6 +35,10 @@ func main() {
 		sendMsg.Name = "channel add"
 		sendMsg.Data = channel
 		sendRawMsg, err := json.Marshal(sendMsg)
+		if err != nil {
+			return
+		}
+		fmt.Println(string(sendRawMsg))
 	}
 }
 
@@ -42,7 +46,7 @@ func addChannel(data interface{}) (Channel, error) {
 	var channel Channel
 	err := mapstructure.Decode(data, &channel)
 	if err != nil {
-		// return nil, err
+		return channel, err
 	}
 	channel.ID = "1"
 
