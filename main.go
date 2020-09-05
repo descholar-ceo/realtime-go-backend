@@ -41,7 +41,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		msgType, msg, err := socket.ReadMessage()
 		if err != nil {
 			fmt.Println(err)
-			break
+			return
 		}
 		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		if err = socket.WriteMessage(msgType, msg); err != nil {
