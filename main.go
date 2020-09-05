@@ -62,14 +62,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func addChannel(data interface{}) (Channel, error) {
+func addChannel(data interface{}) error {
 	var channel Channel
 	err := mapstructure.Decode(data, &channel)
 	if err != nil {
-		return channel, err
+		return err
 	}
 	channel.ID = "1"
 
 	fmt.Printf("the channel is : %#v\n", channel)
-	return channel, nil
+	return nil
 }

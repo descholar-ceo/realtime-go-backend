@@ -1,10 +1,5 @@
 package main
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // /*Message is a struct*/
 // type Message struct {
 // 	Name string      `json:"name"`
@@ -18,26 +13,26 @@ import (
 // }
 
 func junk() {
-	recRawMsg := []byte(`{"name":"channel add", "data":{"name":"Hardware support"}}`)
+	// recRawMsg := []byte(`{"name":"channel add", "data":{"name":"Hardware support"}}`)
 
-	var recMsg Message
-	err := json.Unmarshal(recRawMsg, &recMsg)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Printf("%#v\n", recMsg)
-	if recMsg.Name == "channel add" {
-		channel, err := addChannel(recMsg.Data)
-		var sendMsg Message
-		sendMsg.Name = "channel add"
-		sendMsg.Data = channel
-		sendRawMsg, err := json.Marshal(sendMsg)
-		if err != nil {
-			return
-		}
-		fmt.Println(string(sendRawMsg))
-	}
+	// var recMsg Message
+	// err := json.Unmarshal(recRawMsg, &recMsg)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Printf("%#v\n", recMsg)
+	// if recMsg.Name == "channel add" {
+	// 	channel, err := addChannel(recMsg.Data)
+	// 	var sendMsg Message
+	// 	sendMsg.Name = "channel add"
+	// 	sendMsg.Data = channel
+	// 	sendRawMsg, err := json.Marshal(sendMsg)
+	// 	if err != nil {
+	// 		return
+	// 	}
+	// 	fmt.Println(string(sendRawMsg))
+	// }
 }
 
 // func addChannel(data interface{}) (Channel, error) {
