@@ -27,6 +27,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	for {
 		messageType, msg, err := socket.ReadMessage()
-
+		if err != nil {
+			fmt.Println(err)
+			break
+		}
 	}
 }
