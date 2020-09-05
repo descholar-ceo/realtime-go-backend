@@ -31,6 +31,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 			break
 		}
-		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", msgType, msg)
+		fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 	}
 }
