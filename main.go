@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/websocket"
+	"github.com/mitchellh/mapstructure"
 )
 
 /*Message is a struct*/
@@ -59,4 +60,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		// 	return
 		// }
 	}
+}
+
+func addChannel(data interface{}) (Channel, error) {
+	var channel Channel
+	err := mapstructure.Decode(data, &channel)
+	if err != nil {
+		return channel, err
+	}
+	channel.ID = "1"
+
+	fmt.Printf("the channel is : %#v\n", channel)
+	return channel, nil
 }
