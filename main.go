@@ -1,12 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"time"
-
-	"github.com/gorilla/websocket"
-	"github.com/mitchellh/mapstructure"
 )
 
 /*Message is a struct*/
@@ -24,27 +19,4 @@ type Channel struct {
 func main() {
 	// http.HandleFunc("/", handler)
 	http.ListenAndServe(":8081", nil)
-}
-
-func addChannel(data interface{}) error {
-	var channel Channel
-	err := mapstructure.Decode(data, &channel)
-	if err != nil {
-		return err
-	}
-	channel.ID = "1"
-
-	// fmt.Printf("the channel is : %#v\n", channel)
-	fmt.Println("Added new channel")
-	return nil
-}
-
-func subscribeChannel(socket *websocket.Conn) {
-	// TODO: rethink Query / changefeed
-	for {
-		time.Sleep(time.Second * 1)
-		fmt.Println("Added a new channel")
-		message := Message{"channel add", Channel{"1", "Software support"}}
-		socket.WriteJSON(message)
-	}
 }
