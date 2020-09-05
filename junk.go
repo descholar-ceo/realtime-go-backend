@@ -1,7 +1,8 @@
 package main
 
-type Message struct{
-	Name string,
+/*Message is a struct*/
+type Message struct {
+	Name string
 	Data interface{}
 }
 
