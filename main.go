@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/websocket"
 	"github.com/mitchellh/mapstructure"
@@ -61,7 +62,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		case "channel subscribe":
-			subscribeChannel()
+			subscribeChannel(socket)
 		}
 		// fmt.Printf("The messageType is: %v\nThe messsage is: %v\n", int(msgType), string(msg))
 		// if err = socket.WriteMessage(msgType, msg); err != nil {
@@ -83,6 +84,9 @@ func addChannel(data interface{}) error {
 	return nil
 }
 
-func subscribeChannel() {
+func subscribeChannel(socket *websocket.Conn) {
 	// TODO: rethink Query / changefeed
+	for {
+		time.Sleep(time.Second * 1)
+	}
 }
