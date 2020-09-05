@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/mitchellh/mapstructure"
 )
 
 /*Message is a struct*/
@@ -28,14 +30,19 @@ func main() {
 	}
 	fmt.Printf("%#v\n", recMsg)
 	if recMsg.Name == "channel add" {
-		addChannel(recMsg.Data)
+		channel, err := addChannel(recMsg.Data)
+		var sendMsg Message
+		sendMsg.Name = "channel add"
+		sendMsg.Data = channel
 	}
 }
 
 func addChannel(data interface{}) (Channel, error) {
 	var channel Channel
-	channelMap := data.(map[string]interface{})
-	channel.Name = channelMap["name"].(string)
+	err := mapstructure.Decode(data, &channel)
+	if err != nil {
+		// return nil, err
+	}
 	channel.ID = "1"
 
 	fmt.Printf("the channel is : %#v\n", channel)
