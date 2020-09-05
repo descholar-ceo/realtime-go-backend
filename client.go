@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
 
 /*Message is a struct*/
@@ -23,27 +21,6 @@ func (client *Client) Write() {
 		// TODO: call socket.sendJSON(msg)
 		fmt.Printf("%#v\n", msg)
 	}
-}
-
-func (client *Client) subscribeChannels() {
-	// TODO: changefeed Query RethinkDB
-
-	for {
-		time.Sleep(r())
-		client.send <- Message{"channel add", ""}
-	}
-}
-func (client *Client) subscribeMessages() {
-	// TODO: changefeed Query RethinkDB
-
-	for {
-		time.Sleep(r())
-		client.send <- Message{"message add", ""}
-	}
-}
-
-func r() time.Duration {
-	return time.Millisecond * time.Duration(rand.Intn(1000))
 }
 
 /*NewClient is the instation of the Client object*/
