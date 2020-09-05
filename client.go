@@ -20,7 +20,7 @@ type Client struct {
 func (client *Client) write() {
 	for msg := range client.send {
 		// TODO: call socket.sendJSON(msg)
-		fmt.Println("%#v\n", msg)
+		fmt.Printf("%#v\n", msg)
 	}
 }
 
@@ -45,4 +45,16 @@ func r() time.Duration {
 	return time.Millisecond * time.Duration(rand.Intn(1000))
 }
 
-func main() {}
+/*NewClient is the instation of the Client object*/
+func NewClient() *Client {
+	return &Client{
+		send: make(chan Message),
+	}
+}
+
+func main() {
+	client := NewClient()
+	go client.subscribeChannels()
+	go client.subscribeMessages()
+	client.write()
+}
