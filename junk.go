@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 /*Message is a struct*/
@@ -15,5 +16,9 @@ func main() {
 		`"data":{"name":"Hardware support"}`)
 
 	var recMsg Message
-	json.Unmarshal(recRawMsg, &recMsg)
+	err := json.Unmarshal(recRawMsg, &recMsg)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
