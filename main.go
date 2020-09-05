@@ -88,5 +88,7 @@ func subscribeChannel(socket *websocket.Conn) {
 	// TODO: rethink Query / changefeed
 	for {
 		time.Sleep(time.Second * 1)
+		message := Message{"channel add", Channel{"1", "Software support"}}
+		socket.WriteJSON(message)
 	}
 }
