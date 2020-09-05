@@ -25,4 +25,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
+	for {
+		messageType, msg, err := socket.ReadMessage()
+
+	}
 }
