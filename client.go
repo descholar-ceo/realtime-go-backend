@@ -29,6 +29,7 @@ func (client *Client) Write() {
 /*NewClient is the instation of the Client object*/
 func NewClient(socket *websocket.Conn) *Client {
 	return &Client{
-		send: make(chan Message),
+		send:   make(chan Message),
+		socket: socket,
 	}
 }
