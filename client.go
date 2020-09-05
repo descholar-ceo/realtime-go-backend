@@ -27,7 +27,15 @@ func (client *Client) Write() {
 }
 
 /*Read method is to read the inMessage*/
-fucn (client *Client) Read(){}
+func (client *Client) Read() {
+	var msg Message
+	for {
+		if err := client.socket.ReadJSON(&msg); err != nil {
+			break
+		}
+
+	}
+}
 
 /*NewClient is the instation of the Client object*/
 func NewClient(socket *websocket.Conn) *Client {
