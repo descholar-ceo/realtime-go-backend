@@ -7,6 +7,15 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
+const (
+	/*ChannelStop is an iota*/
+	ChannelStop = iota
+	/*UserStop is an iota*/
+	UserStop
+	/*MessageStop is an iota*/
+	MessageStop
+)
+
 func addChannel(client *Client, data interface{}) {
 	var channel Channel
 	err := mapstructure.Decode(data, &channel)
@@ -26,6 +35,7 @@ func addChannel(client *Client, data interface{}) {
 }
 
 func subscribeChannel(client *Client, data interface{}) {
+	stop := client.NewStopChannel(ChannelStop)
 	go func() {
 		cursor, err := r.Table("channel").
 			Changes(r.ChangesOpts{IncludeInitial: true}).
