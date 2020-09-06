@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	r "github.com/dancannon/gorethink"
 )
 
 /*Channel is a struct type */
@@ -17,6 +19,14 @@ type User struct {
 }
 
 func main() {
+	session, err := r.Connect(r.ConnectOpts{
+		Address:  "172.17.0.2:28015",
+		Database: "realtime_go_db",
+	})
+
+	if err != nil {
+
+	}
 	router := NewRouter()
 
 	router.Handle("channel add", addChannel)
