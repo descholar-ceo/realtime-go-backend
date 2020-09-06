@@ -59,6 +59,7 @@ func (client *Client) Close() {
 	for _, mChannel := range client.stopChannels {
 		mChannel <- true
 	}
+	close(client.send)
 }
 
 /*NewClient is the instation of the Client object */
