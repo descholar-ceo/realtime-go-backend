@@ -16,10 +16,11 @@ type Message struct {
 
 /*Client struct */
 type Client struct {
-	send        chan Message
-	socket      *websocket.Conn
-	findHandler FindHandler
-	session     *r.Session
+	send         chan Message
+	socket       *websocket.Conn
+	findHandler  FindHandler
+	session      *r.Session
+	stopChannels map[int]chan bool
 }
 
 /*NewStopChannel is a func which is in charge of stopping a goroutine*/
@@ -55,9 +56,10 @@ func (client *Client) Read() {
 /*NewClient is the instation of the Client object */
 func NewClient(socket *websocket.Conn, findHandler FindHandler, session *r.Session) *Client {
 	return &Client{
-		send:        make(chan Message),
-		socket:      socket,
-		findHandler: findHandler,
-		session:     session,
+		send:         make(chan Message),
+		socket:       socket,
+		findHandler:  findHandler,
+		session:      session,
+		stopChannels: make(map[int]chan bool),
 	}
 }
