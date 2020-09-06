@@ -6,8 +6,8 @@ import (
 
 /*Channel is a struct type */
 type Channel struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID   string `json:"id" gorethink:"id,omitempty"`
+	Name string `json:"name" gorethink:"name"`
 }
 
 func main() {
