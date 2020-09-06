@@ -49,10 +49,7 @@ func subscribeChannel(client *Client, data interface{}) {
 		var change r.ChangeResponse
 		for cursor.Next(&change) {
 			result <- change
-			if change.NewValue != nil && change.OldValue == nil {
-				client.send <- Message{"channel add", change.NewValue}
-				fmt.Println("Sent add channel")
-			}
+
 		}
 	}()
 
@@ -62,6 +59,11 @@ func subscribeChannel(client *Client, data interface{}) {
 			case <-stop:
 				cursor.Close()
 				return
+			case change := <-result:
+				if change.NewValue != nil && change.OldValue == nil {
+					client.send <- Message{"channel add", change.NewValue}
+					fmt.Println("Sent add channel")
+				}
 			}
 		}
 	}()
