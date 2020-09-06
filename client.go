@@ -30,6 +30,9 @@ func (client *Client) NewStopChannel(stopKey int) chan bool {
 	return stop
 }
 
+/*StopForKey is a method incharge of stopping */
+func (client *Client) StopForKey(key int) {}
+
 /*Write method*/
 func (client *Client) Write() {
 	for msg := range client.send {
