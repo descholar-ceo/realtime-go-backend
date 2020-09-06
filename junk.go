@@ -6,11 +6,7 @@ import (
 	r "github.com/dancannon/gorethink"
 )
 
-/*User struct*/
-type User struct {
-	ID   string `gorethink:"id,omitempty"`
-	Name string `gorethink:"name"`
-}
+
 
 func main() {
 	session, err := r.Connect(r.ConnectOpts{

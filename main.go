@@ -10,6 +10,12 @@ type Channel struct {
 	Name string `json:"name" gorethink:"name"`
 }
 
+/*User struct*/
+type User struct {
+	ID   string `gorethink:"id,omitempty"`
+	Name string `gorethink:"name"`
+}
+
 func main() {
 	router := NewRouter()
 
