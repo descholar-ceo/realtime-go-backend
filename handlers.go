@@ -15,4 +15,5 @@ func addChannel(client *Client, data interface{}) {
 	channel.ID = "ABC123"
 	msg.Name = "channel add"
 	msg.Data = channel
+	client.send <- msg
 }
