@@ -22,3 +22,7 @@ func addChannel(client *Client, data interface{}) {
 		}
 	}()
 }
+
+func subscribeChannel(client *Client, data interface{}) {
+
+}
