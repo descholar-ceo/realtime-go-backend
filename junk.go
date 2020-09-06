@@ -24,4 +24,5 @@ func main() {
 	go subscribe(session)
 	time.Sleep(time.Second * 5)
 	fmt.Println("Browser closes... \nWebsocket closes")
+	time.Sleep(time.Second * 1000)
 }
