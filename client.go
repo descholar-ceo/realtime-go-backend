@@ -37,8 +37,11 @@ func (client *Client) Read() {
 		if err := client.socket.ReadJSON(&msg); err != nil {
 			break
 		}
-
+		if handler, found := client.findHandler(msg.Name); found {
+			handler(client, msg.Data)
+		}
 	}
+	client.socket.Close()
 }
 
 /*NewClient is the instation of the Client object*/
