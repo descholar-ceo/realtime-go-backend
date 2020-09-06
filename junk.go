@@ -22,5 +22,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
+	user := User{
+		Name: "anonymous",
+	}
 }
