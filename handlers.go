@@ -12,11 +12,13 @@ func addChannel(client *Client, data interface{}) {
 		client.send <- Message{"error", err.Error()}
 		return
 	}
-	err = r.Table("channel").
-		Insert(channel).
-		Exec(client.session)
-	if err != nil {
-		client.send <- Message{"error", err.Error()}
-		return
-	}
+	go func() {
+		err = r.Table("channel").
+			Insert(channel).
+			Exec(client.session)
+		if err != nil {
+			client.send <- Message{"error", err.Error()}
+			return
+		}
+	}()
 }
