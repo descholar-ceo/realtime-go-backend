@@ -54,6 +54,9 @@ func (client *Client) Read() {
 	client.socket.Close()
 }
 
+/*Close method cleses the client connection*/
+func (client *Client) Close() {}
+
 /*NewClient is the instation of the Client object */
 func NewClient(socket *websocket.Conn, findHandler FindHandler, session *r.Session) *Client {
 	return &Client{
