@@ -37,15 +37,15 @@ func addChannel(client *Client, data interface{}) {
 func subscribeChannel(client *Client, data interface{}) {
 	stop := client.NewStopChannel(ChannelStop)
 	result := make(chan r.ChangeResponse)
-	go func() {
-		cursor, err := r.Table("channel").
-			Changes(r.ChangesOpts{IncludeInitial: true}).
-			Run(client.session)
+	cursor, err := r.Table("channel").
+		Changes(r.ChangesOpts{IncludeInitial: true}).
+		Run(client.session)
 
-		if err != nil {
-			client.send <- Message{"error", err.Error()}
-			return
-		}
+	if err != nil {
+		client.send <- Message{"error", err.Error()}
+		return
+	}
+	go func() {
 		var change r.ChangeResponse
 		for cursor.Next(&change) {
 			result <- change
