@@ -19,4 +19,6 @@ func main() {
 		Address:  "172.17.0.2:28015",
 		Database: "realtime_go_db",
 	})
+
+	subscribe(session)
 }
