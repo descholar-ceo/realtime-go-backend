@@ -20,7 +20,7 @@ func main() {
 		Address:  "172.17.0.2:28015",
 		Database: "realtime_go_db",
 	})
-
+	stop := make(chan bool)
 	go subscribe(session)
 	time.Sleep(time.Second * 5)
 	fmt.Println("Browser closes... \nWebsocket closes")
