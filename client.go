@@ -12,8 +12,9 @@ type Message struct {
 
 /*Client struct*/
 type Client struct {
-	send   chan Message
-	socket *websocket.Conn
+	send        chan Message
+	socket      *websocket.Conn
+	findHandler func(string) (Handler, bool)
 }
 
 /*Write method*/
