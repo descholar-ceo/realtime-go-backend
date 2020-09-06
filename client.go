@@ -25,6 +25,7 @@ type Client struct {
 
 /*NewStopChannel is a func which is in charge of stopping a goroutine*/
 func (client *Client) NewStopChannel(stopKey int) chan bool {
+	client.StopForKey(stopKey)
 	stop := make(chan bool)
 	client.stopChannels[stopKey] = stop
 	return stop
