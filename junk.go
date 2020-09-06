@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	r "github.com/dancannon/gorethink"
 )
@@ -21,4 +22,5 @@ func main() {
 	})
 
 	go subscribe(session)
+	time.Sleep(time.Second * 5)
 }
