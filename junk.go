@@ -9,11 +9,14 @@ import (
 
 func subscribe(session *r.Session, stop <-chan bool) {
 	result := make(chan r.ChangeResponse)
-	var change r.ChangeResponse
 	cursor, _ := r.Table("channel").Changes().Run(session)
-	for cursor.Next(&change) {
-		fmt.Printf("%#v\n", change.NewValue)
-	}
+
+	go func() {
+		var change r.ChangeResponse
+		for cursor.Next(&change) {
+			// fmt.Printf("%#v\n", change.NewValue)
+		}
+	}()
 }
 
 func main() {
