@@ -53,4 +53,14 @@ func subscribeChannel(client *Client, data interface{}) {
 			}
 		}
 	}()
+
+	go func() {
+		for {
+			select {
+			case <-stop:
+				cursor.Close()
+				return
+			}
+		}
+	}()
 }
