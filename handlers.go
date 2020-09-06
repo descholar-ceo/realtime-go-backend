@@ -7,12 +7,16 @@ import (
 
 func addChannel(client *Client, data interface{}) {
 	var channel Channel
-	mapstructure.Decode(data, &channel)
-	// TODO: insert the new added channel in rethinkDB
-	err := r.Table("channel").
+	err := mapstructure.Decode(data, &channel)
+	if err != nil {
+		client.send <- Message{"error", err.Error()}
+		return
+	}
+	err = r.Table("channel").
 		Insert(channel).
 		Exec(client.session)
 	if err != nil {
 		client.send <- Message{"error", err.Error()}
+		return
 	}
 }
