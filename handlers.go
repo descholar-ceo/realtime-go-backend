@@ -13,4 +13,5 @@ func addChannel(client *Client, data interface{}) {
 	fmt.Printf("%#v\n", channel)
 	// TODO: insert the new added channel in rethinkDB
 	channel.ID = "ABC123"
+	msg.Name = "channel add"
 }
