@@ -33,7 +33,12 @@ func main() {
 	// 	return
 	// }
 	// fmt.Printf("%#v\n", response)
-	r.Table("user").
+	cursor, _ := r.Table("user").
 		Changes(r.ChangesOpts{IncludeInitial: true}).
 		Run(session)
+
+	var changeResp r.ChangeResponse
+	for cursor.Next(&changeResp) {
+		fmt.Printf("%#v\n", changeResp)
+	}
 }
