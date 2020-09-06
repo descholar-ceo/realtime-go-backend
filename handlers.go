@@ -11,6 +11,8 @@ func addChannel(client *Client, data interface{}) {
 	var msg Message
 	mapstructure.Decode(data, &channel)
 	fmt.Printf("%#v\n", channel)
+
+	// send some response to ui
 	channel.ID = "ABC123"
 	msg.Name = "channel add"
 	msg.Data = channel
