@@ -23,11 +23,11 @@ func main() {
 		return
 	}
 	user := User{
-		Name: "anonymous",
+		Name: "descholar",
 	}
 	// r.Table("user").Insert(user).Exec(session) //This doesn't return an entered data
-	response, err := r.Table("user").Insert(user).RunWrite(session) //This return an entered data
-
+	// response, err := r.Table("user").Insert(user).RunWrite(session) //This return an entered data
+	response, err := r.Table("user").Get("701967cb-9159-4085-86a0-59b524f46166").Update(user).RunWrite(session)
 	if err != nil {
 		fmt.Println(err)
 		return
