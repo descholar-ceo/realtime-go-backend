@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	r "github.com/dancannon/gorethink"
@@ -25,9 +26,10 @@ func main() {
 	})
 
 	if err != nil {
-
+		log.Panic(err.Error())
 	}
-	router := NewRouter()
+
+	router := NewRouter(session)
 
 	router.Handle("channel add", addChannel)
 
