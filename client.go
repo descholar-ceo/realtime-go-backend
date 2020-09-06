@@ -1,6 +1,7 @@
 package main
 
 import (
+	r "github.com/dancannon/gorethink"
 	"github.com/gorilla/websocket"
 )
 
@@ -15,9 +16,27 @@ type Message struct {
 
 /*Client struct */
 type Client struct {
-	send        chan Message
-	socket      *websocket.Conn
-	findHandler FindHandler
+	send         chan Message
+	socket       *websocket.Conn
+	findHandler  FindHandler
+	session      *r.Session
+	stopChannels map[int]chan bool
+}
+
+/*NewStopChannel is a func which is in charge of stopping a goroutine*/
+func (client *Client) NewStopChannel(stopKey int) chan bool {
+	client.StopForKey(stopKey)
+	stop := make(chan bool)
+	client.stopChannels[stopKey] = stop
+	return stop
+}
+
+/*StopForKey is a method incharge of stopping */
+func (client *Client) StopForKey(key int) {
+	if mChannel, found := client.stopChannels[key]; found {
+		mChannel <- true
+		delete(client.stopChannels, key)
+	}
 }
 
 /*Write method*/
@@ -44,11 +63,21 @@ func (client *Client) Read() {
 	client.socket.Close()
 }
 
+/*Close method cleses the client connection*/
+func (client *Client) Close() {
+	for _, mChannel := range client.stopChannels {
+		mChannel <- true
+	}
+	close(client.send)
+}
+
 /*NewClient is the instation of the Client object */
-func NewClient(socket *websocket.Conn, findHandler FindHandler) *Client {
+func NewClient(socket *websocket.Conn, findHandler FindHandler, session *r.Session) *Client {
 	return &Client{
-		send:        make(chan Message),
-		socket:      socket,
-		findHandler: findHandler,
+		send:         make(chan Message),
+		socket:       socket,
+		findHandler:  findHandler,
+		session:      session,
+		stopChannels: make(map[int]chan bool),
 	}
 }
