@@ -25,4 +25,5 @@ func main() {
 	user := User{
 		Name: "anonymous",
 	}
+	// r.Table("user").Insert(user).Exec(session) //This doesn't return an entered data
 }
