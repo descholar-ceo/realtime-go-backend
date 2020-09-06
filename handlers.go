@@ -24,5 +24,14 @@ func addChannel(client *Client, data interface{}) {
 }
 
 func subscribeChannel(client *Client, data interface{}) {
+	go func() {
+		cursor, err := r.Table("channel").
+			Changes(r.ChangesOpts{IncludeInitial: true}).
+			Run(client.session)
 
+		if err != nil {
+			client.send <- Message{"error", err.Error()}
+			return
+		}
+	}()
 }
