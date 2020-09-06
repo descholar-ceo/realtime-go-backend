@@ -33,5 +33,9 @@ func subscribeChannel(client *Client, data interface{}) {
 			client.send <- Message{"error", err.Error()}
 			return
 		}
+		var change r.ChangeResponse
+		for cursor.Next(change) {
+
+		}
 	}()
 }
