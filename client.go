@@ -57,6 +57,7 @@ func (client *Client) Read() {
 /*Close method cleses the client connection*/
 func (client *Client) Close() {
 	for _, mChannel := range client.stopChannels {
+		mChannel <- true
 	}
 }
 
