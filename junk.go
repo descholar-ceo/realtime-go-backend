@@ -7,7 +7,7 @@ import (
 	r "github.com/dancannon/gorethink"
 )
 
-func subscribe(session *r.Session) {
+func subscribe(session *r.Session, stop <-chan bool) {
 	var change r.ChangeResponse
 	cursor, _ := r.Table("channel").Changes().Run(session)
 	for cursor.Next(&change) {
@@ -21,7 +21,7 @@ func main() {
 		Database: "realtime_go_db",
 	})
 	stop := make(chan bool)
-	go subscribe(session)
+	go subscribe(session, stop)
 	time.Sleep(time.Second * 5)
 	fmt.Println("Browser closes... \nWebsocket closes")
 	time.Sleep(time.Second * 1000)
