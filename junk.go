@@ -17,6 +17,7 @@ func subscribe(session *r.Session, stop <-chan bool) {
 			// fmt.Printf("%#v\n", change.NewValue)
 			result <- change
 		}
+		fmt.Println("Exiting cursor goroutine...")
 	}()
 	for {
 		select {
