@@ -20,5 +20,5 @@ func main() {
 		Database: "realtime_go_db",
 	})
 
-	subscribe(session)
+	go subscribe(session)
 }
