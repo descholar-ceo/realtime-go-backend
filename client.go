@@ -4,6 +4,9 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+/*FindHandler function*/
+type FindHandler func(string) (Handler, bool)
+
 /*Message is a struct*/
 type Message struct {
 	Name string      `json:"name"`
