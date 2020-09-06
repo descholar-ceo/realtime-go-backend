@@ -31,7 +31,12 @@ func (client *Client) NewStopChannel(stopKey int) chan bool {
 }
 
 /*StopForKey is a method incharge of stopping */
-func (client *Client) StopForKey(key int) {}
+func (client *Client) StopForKey(key int) {
+	if mChannel, found := client.stopChannels[key]; found {
+		mChannel <- true
+		delete(client.stopChannels, key)
+	}
+}
 
 /*Write method*/
 func (client *Client) Write() {
