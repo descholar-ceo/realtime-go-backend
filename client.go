@@ -44,7 +44,7 @@ func (client *Client) Read() {
 	client.socket.Close()
 }
 
-/*NewClient is the instation of the Client object*/
+/*NewClient is the instation of the Client object */
 func NewClient(socket *websocket.Conn, findHandler FindHandler) *Client {
 	return &Client{
 		send:        make(chan Message),
