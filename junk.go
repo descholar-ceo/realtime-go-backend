@@ -5,6 +5,9 @@ import r "github.com/dancannon/gorethink"
 func subscribe(session *r.Session) {
 	var change r.ChangeResponse
 	cursor, _ := r.Table("channel").Changes().Run(session)
+	for cursor.Next(&change) {
+
+	}
 }
 
 func main() {
