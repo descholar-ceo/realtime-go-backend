@@ -55,7 +55,10 @@ func (client *Client) Read() {
 }
 
 /*Close method cleses the client connection*/
-func (client *Client) Close() {}
+func (client *Client) Close() {
+	for _, mChannel := range client.stopChannels {
+	}
+}
 
 /*NewClient is the instation of the Client object */
 func NewClient(socket *websocket.Conn, findHandler FindHandler, session *r.Session) *Client {
