@@ -45,9 +45,10 @@ func (client *Client) Read() {
 }
 
 /*NewClient is the instation of the Client object*/
-func NewClient(socket *websocket.Conn) *Client {
+func NewClient(socket *websocket.Conn, findHandler FindHandler) *Client {
 	return &Client{
-		send:   make(chan Message),
-		socket: socket,
+		send:        make(chan Message),
+		socket:      socket,
+		findHandler: findHandler,
 	}
 }
