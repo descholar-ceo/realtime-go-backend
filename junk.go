@@ -1,12 +1,16 @@
 package main
 
-import r "github.com/dancannon/gorethink"
+import (
+	"fmt"
+
+	r "github.com/dancannon/gorethink"
+)
 
 func subscribe(session *r.Session) {
 	var change r.ChangeResponse
 	cursor, _ := r.Table("channel").Changes().Run(session)
 	for cursor.Next(&change) {
-
+		fmt.Printf("%#v\n", change.NewValue)
 	}
 }
 
