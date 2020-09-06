@@ -36,7 +36,7 @@ func subscribeChannel(client *Client, data interface{}) {
 			return
 		}
 		var change r.ChangeResponse
-		for cursor.Next(change) {
+		for cursor.Next(&change) {
 			if change.NewValue != nil && change.OldValue == nil {
 				client.send <- Message{"channel add", change.NewValue}
 				fmt.Println("Sent add channel")
