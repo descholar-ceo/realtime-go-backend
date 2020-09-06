@@ -23,6 +23,7 @@ func subscribe(session *r.Session, stop <-chan bool) {
 		case change := <-result:
 			fmt.Printf("%#v\n", change.NewValue)
 		case <-stop:
+			fmt.Println("Closing cursor...")
 			cursor.Close()
 			return
 		}
@@ -37,6 +38,7 @@ func main() {
 	stop := make(chan bool)
 	go subscribe(session, stop)
 	time.Sleep(time.Second * 5)
+	fmt.Println("Sending stop...")
 	stop <- true
 	fmt.Println("Browser closes... \nWebsocket closes")
 	time.Sleep(time.Second * 1000)
