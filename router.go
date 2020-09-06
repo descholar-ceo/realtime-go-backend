@@ -50,7 +50,7 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(w, err.Error())
 		return
 	}
-	client := NewClient(socket, r.FindHandler)
+	client := NewClient(socket, r.FindHandler, r.session)
 	go client.Write()
 	client.Read()
 }
