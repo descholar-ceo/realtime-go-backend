@@ -16,7 +16,7 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin:     func(r *http.Request) bool { return true },
 }
 
-/*Router is a struct*/
+/*Router is a struct */
 type Router struct {
 	rules map[string]Handler
 }

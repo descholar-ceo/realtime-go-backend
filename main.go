@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-/*Channel is a struct type*/
+/*Channel is a struct type */
 type Channel struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`

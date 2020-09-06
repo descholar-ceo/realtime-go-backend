@@ -7,13 +7,13 @@ import (
 /*FindHandler function*/
 type FindHandler func(string) (Handler, bool)
 
-/*Message is a struct*/
+/*Message is a struct */
 type Message struct {
 	Name string      `json:"name"`
 	Data interface{} `json:"data"`
 }
 
-/*Client struct*/
+/*Client struct */
 type Client struct {
 	send        chan Message
 	socket      *websocket.Conn
@@ -30,7 +30,7 @@ func (client *Client) Write() {
 	client.socket.Close()
 }
 
-/*Read method is to read the inMessage*/
+/*Read method is to read the inMessage */
 func (client *Client) Read() {
 	var msg Message
 	for {
