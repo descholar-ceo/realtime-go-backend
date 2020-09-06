@@ -22,6 +22,12 @@ type Client struct {
 	session     *r.Session
 }
 
+/*NewStopChannel is a func which is in charge of stopping a goroutine*/
+func (client *Client) NewStopChannel() chan bool {
+	stop := make(chan bool)
+	return stop
+}
+
 /*Write method*/
 func (client *Client) Write() {
 	for msg := range client.send {
