@@ -26,4 +26,12 @@ func main() {
 		Name: "anonymous",
 	}
 	// r.Table("user").Insert(user).Exec(session) //This doesn't return an entered data
+	response, err := r.Table("user").Insert(user).RunWrite(session) //This return an entered data
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("%#v\n", response)
+
 }
